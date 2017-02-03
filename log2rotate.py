@@ -130,7 +130,8 @@ class Log2RotateDatetime(Log2Rotate):
 		super(Log2RotateDatetime, self).__init__(**kwargs)
 
 	def strptime(self, s):
-		return datetime.datetime.strptime(s, self.fmt)
+		d = datetime.datetime.strptime(s, fmt)
+		return d.replace(hour=0, minute=0, second=0)
 
 	def sub(self, x, y):
 		x2 = self.strptime(x)
